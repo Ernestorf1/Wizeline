@@ -1,0 +1,48 @@
+plugins {
+    id("java")
+}
+
+group = "Out Of the Box"
+version = "1.0-SNAPSHOT"
+//Java Version Compatibility
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //Selenium dependency
+// https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.19.1'
+
+// https://mvnrepository.com/artifact/org.testng/testng
+testImplementation 'org.testng:testng:7.9.0'
+// https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
+implementation 'io.github.bonigarcia:webdrivermanager:5.7.0'
+
+    testImplementation(platform('org.junit:junit-bom:5.9.3'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+// https://mvnrepository.com/artifact/io.cucumber/cucumber-java
+implementation 'io.cucumber:cucumber-java:7.15.0'
+
+// https://mvnrepository.com/artifact/io.cucumber/cucumber-junit
+testImplementation 'io.cucumber:cucumber-junit:7.15.0'
+    // https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber7-adapter
+    implementation group: 'tech.grasshopper', name: 'extentreports-cucumber7-adapter', version: '1.14.0'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+implementation 'org.apache.logging.log4j:log4j-core:2.23.1'
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+//
+tasks.named('test') { 
+systemProperty "cucumber.options", System.getProperty("cucumber.options")}
